@@ -154,28 +154,9 @@ describe('Discover', function() {
 
 describe('Maestro', function() {
 
-  // Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
-  it('has a prefix of 5018 and a length of 12', function() {
-    expect(detectNetwork('5018123456789012')).to.equal('Maestro');
-  });
-
-  it('has a prefix of 5018 and a length of 19', function() {
-    expect(detectNetwork('5018123456789012123')).to.equal('Maestro');
-  });
-
-  // CCN = Credit Card Number
-  // prefix list
-  // length list
-  // loop thru prefix (4)
   [5018, 5020, 5038, 6304].forEach(prefix => {
-    // loop thru lengths (8)
     [12, 13, 14, 15, 16, 17, 18, 19].forEach(ccnLen => {
       console.log(prefix, ccnLen, (prefix.toString()).padEnd(String(ccnLen), '1234567890'));
-      // run test of prefix[i]/value on CCN of predetermined length;
-      // pull prefix
-      // stick onto tail of CCN of correctly filled length.
-
-      // use .padEnd() to stick tail onto prefix
       let ccn = prefix.toString().padEnd(String(ccnLen), '1234567890');
       it(`has a prefix of ${prefix} and a length of ${ccnLen}`, function() {
         expect(detectNetwork(ccn)).to.equal('Maestro');
