@@ -40,7 +40,7 @@ var detectNetwork = function(cardNumber) {
      // if not found? return 'no corresponding network found'
  
 
-    // TODO move data on CC Networks to this object after get more data together
+    // TODO move data on CC Network to this object after get more data together
     // const networkDirectory = {
     //   'Diner\'s Club': {}
     // }
@@ -48,6 +48,7 @@ var detectNetwork = function(cardNumber) {
    // Check number and Return Network
    // take prefix
     // slice off prefix length
+
     let stringPrefix = cardNumber.slice(0, 2)
   // convert to number
     let prefix = Number(stringPrefix);
