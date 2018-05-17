@@ -143,12 +143,14 @@ describe('Discover', function() {
   // Implement these tests (and others) and make them pass!
   // Discover always has a prefix of 6011, 644-649, or 65, and a length of 16 or 19.
 
-  it('has a prefix of 6011 and a length of 16', function() {
-    expect(detectNetwork('6011123456789012')).to.equal('Discover');
-  });
-
-  it('has a prefix of 6011 and a length of 19', function() {
-    expect(detectNetwork('6011123456789012123')).to.equal('Discover');
+  [6011, 644, 645, 646, 647, 648, 649, 65].forEach(prefix => {
+    [16, 19].forEach(ccnLen => {
+      console.log(prefix, ccnLen, (prefix.toString()).padEnd(String(ccnLen), '1234567890'));
+      let ccn = prefix.toString().padEnd(String(ccnLen), '1234567890');
+      it(`has a prefix of ${prefix} and a length of ${ccnLen}: with CCN: ${ccn}`, function() {
+        expect(detectNetwork(ccn)).to.equal('Discover');
+      });
+    });
   });
 });
 
@@ -158,15 +160,15 @@ describe('Maestro', function() {
     [12, 13, 14, 15, 16, 17, 18, 19].forEach(ccnLen => {
       console.log(prefix, ccnLen, (prefix.toString()).padEnd(String(ccnLen), '1234567890'));
       let ccn = prefix.toString().padEnd(String(ccnLen), '1234567890');
-      it(`has a prefix of ${prefix} and a length of ${ccnLen}`, function() {
+      it(`has a prefix of ${prefix} and a length of ${ccnLen}: with CCN: ${ccn}`, function() {
         expect(detectNetwork(ccn)).to.equal('Maestro');
       });
     });
   });
-
 });
 
-describe('should support China UnionPay')
+describe('should support China UnionPay');
+
 describe('should support Switch')
 
 
