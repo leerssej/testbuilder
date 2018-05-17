@@ -41,6 +41,9 @@ const expect = chai.expect;
 const assert = chai.assert;
 const should = chai.should;
 
+const range = (start, end) => Array(end - start + 1).fill(start).map((value, i) => value + i);
+console.log(range(624,626));
+
 describe('Diner\'s Club', function() {
 
   it('has a prefix of 38 and a length of 14', function() {
@@ -125,7 +128,7 @@ describe('MasterCard', function() {
   // and should, but that's just for learning), so once you've gotten 
   // these tests to pass using should syntax, refactor your tests to 
   // use either expect or should, but not both. 
-  var should = chai.should();
+
   
   it('has a prefix of 54 and a length of 16', function() {
     expect(detectNetwork('5412345678901234')).to.equal('MasterCard');
@@ -145,7 +148,6 @@ describe('Discover', function() {
 
   [6011, 644, 645, 646, 647, 648, 649, 65].forEach(prefix => {
     [16, 19].forEach(ccnLen => {
-      console.log(prefix, ccnLen, (prefix.toString()).padEnd(String(ccnLen), '1234567890'));
       let ccn = prefix.toString().padEnd(String(ccnLen), '1234567890');
       it(`has a prefix of ${prefix} and a length of ${ccnLen}: with CCN: ${ccn}`, function() {
         expect(detectNetwork(ccn)).to.equal('Discover');
@@ -158,7 +160,6 @@ describe('Maestro', function() {
 
   [5018, 5020, 5038, 6304].forEach(prefix => {
     [12, 13, 14, 15, 16, 17, 18, 19].forEach(ccnLen => {
-      console.log(prefix, ccnLen, (prefix.toString()).padEnd(String(ccnLen), '1234567890'));
       let ccn = prefix.toString().padEnd(String(ccnLen), '1234567890');
       it(`has a prefix of ${prefix} and a length of ${ccnLen}: with CCN: ${ccn}`, function() {
         expect(detectNetwork(ccn)).to.equal('Maestro');
@@ -167,9 +168,24 @@ describe('Maestro', function() {
   });
 });
 
-describe('should support China UnionPay');
+describe('should support China UnionPay', function() {
+  const longPrefixes = range(622126, 622925)
+  const mediPrefixes = range(6282, 6288)
+  const shrtPrefixes = range(624, 626)
+  const allPrefixes = [...longPrefixes, ...mediPrefixes, ...shrtPrefixes]
+
+  allPrefixes.forEach(prefix => {
+    range(16, 19).forEach(ccnLen => {
+      let ccn = prefix.toString().padEnd(String(ccnLen), '1234567890');
+      it(`has a prefix of ${prefix} and a length of ${ccnLen}: with CCN: ${ccn}`, function() {
+        expect(detectNetwork(ccn)).to.equal('Maestro');
+      });
+    });
+  });
+});
 
 describe('should support Switch')
+// Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
 
 
 

@@ -48,12 +48,20 @@ var detectNetwork = function(cardNumber) {
     // ]
     // Discover always has a prefix of 6011, 644-649, or 65, and a length of 16 or 19.
     // Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
+    // China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
 
+    
   // TODO refactor prefix slicer
         // let prefix = prefLen => Number(cardNumber.slice(0, prefLen));
 
   // TODO eliminate prefix slicing all together
-        // str.startsWith(searchString[, position])
+   //initialize range function
+   //create array of objects containing defined credit card prefixes, lengths, and names
+   
+      //str.startsWith(searchString[, position])
+        //if(cardNumber.startsWith( 38, 0))
+
+
           
    // Check number and Return Network
    // take prefix
@@ -88,7 +96,8 @@ var detectNetwork = function(cardNumber) {
    // Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
    if ([5018, 5020, 5038, 6304].includes(prefix) && [12, 13, 14, 15, 16, 17, 18, 19].includes(ccnLen)) return 'Maestro';
 
-   
+   // China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
+
 
    // if not found? return 'no corresponding network found'
    return 'no corresponding network found'
