@@ -40,11 +40,21 @@ var detectNetwork = function(cardNumber) {
      // if not found? return 'no corresponding network found'
  
 
-    // TODO move data on CC Network to this object after get more data together
-    // const networkDirectory = {
-    //   'Diner\'s Club': {}
-    // }
+// TODO: 
+  // TODO move data on CC Network to this object after get more data together
+    // const networkDirectory = [
+    //   {card: 'Diner\'s Club',
+    //   {prefix: [38, 39]}
+    // ]
+    // Discover always has a prefix of 6011, 644-649, or 65, and a length of 16 or 19.
+    // Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
 
+  // TODO refactor prefix slicer
+        // let prefix = prefLen => Number(cardNumber.slice(0, prefLen));
+
+  // TODO eliminate prefix slicing all together
+        // str.startsWith(searchString[, position])
+          
    // Check number and Return Network
    // take prefix
     // slice off prefix length
@@ -61,11 +71,24 @@ var detectNetwork = function(cardNumber) {
    if ([38, 39].includes(prefix) && ccnLen === 14) return 'Diner\'s Club';
    if ([34, 37].includes(prefix) && ccnLen === 15) return 'American Express';
    if ([51, 52, 53, 54, 55].includes(prefix) && ccnLen === 16) return 'MasterCard';
+   if ([65].includes(prefix) && [16, 19].includes(ccnLen)) return 'Discover';
 
    //if not found, set prefix to first digit in cardNumber
    stringPrefix = cardNumber.slice(0, 1);
    prefix = Number(stringPrefix);
    if ([4].includes(prefix) && [13, 16, 19].includes(ccnLen)) return 'Visa';
+
+   stringPrefix = cardNumber.slice(0, 3);
+   prefix = Number(stringPrefix);
+   if ([644, 645, 646, 647, 648, 649].includes(prefix) && [16, 19].includes(ccnLen)) return 'Discover';
+
+   stringPrefix = cardNumber.slice(0, 4);
+   prefix = Number(stringPrefix);
+   if ([6011].includes(prefix) && [16, 19].includes(ccnLen)) return 'Discover';
+   // Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
+   if ([5018, 5020, 5038, 6304].includes(prefix) && [12, 13, 14, 15, 16, 17, 18, 19].includes(ccnLen)) return 'Maestro';
+
+   
 
    // if not found? return 'no corresponding network found'
    return 'no corresponding network found'
