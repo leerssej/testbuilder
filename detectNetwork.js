@@ -57,10 +57,12 @@ var detectNetwork = function(cardNumber) {
    // determine if prefix && length correspond to network
    // compare to object with correctly listed attributes
      // if found ? return network
-    console.log(prefix, ccnLen);
-   if ((prefix === 38 || prefix === 39) && ccnLen === 14) return 'Diner\'s Club';
-   if ((prefix === 34 || prefix === 37) && ccnLen === 15) return 'American Express';
+   if ([38, 39].includes(prefix) && ccnLen === 14) return 'Diner\'s Club';
+   if ([34, 37].includes(prefix) && ccnLen === 15) return 'American Express';
      // if not found? return 'no corresponding network found'
    return 'no corresponding network found'
-    
+
+  // Visa always has a prefix of 4 and a length of 13, 16, or 19.
+  // MasterCard always has a prefix of 51, 52, 53, 54, or 55 and a length of 16.
+
 };
