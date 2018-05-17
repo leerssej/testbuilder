@@ -49,17 +49,11 @@ var detectNetwork = function(cardNumber) {
    // take prefix
     // slice off prefix length
     const stringPrefix = cardNumber.slice(0, 2)
-    console.log('cardNumber, stringPrefix:', cardNumber, stringPrefix)
-   
-    // convert to number
+  // convert to number
     const prefix = Number(stringPrefix);
-    console.log(prefix);
-   
     // take length
     // length method
     const ccnLen = cardNumber.length;
-    console.log(ccnLen);
-
    // determine if prefix && length correspond to network
    // compare to object with correctly listed attributes
      // if found ? return network
