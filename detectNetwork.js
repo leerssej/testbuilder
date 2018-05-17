@@ -59,6 +59,8 @@ var detectNetwork = function(cardNumber) {
      // if found ? return network
    if ([38, 39].includes(prefix) && ccnLen === 14) return 'Diner\'s Club';
    if ([34, 37].includes(prefix) && ccnLen === 15) return 'American Express';
+   if ([51, 52, 53, 54, 55].includes(prefix) && ccnLen === 16) return 'MasterCard';
+   
      // if not found? return 'no corresponding network found'
    return 'no corresponding network found'
 
