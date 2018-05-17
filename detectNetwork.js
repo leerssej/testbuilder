@@ -48,9 +48,9 @@ var detectNetwork = function(cardNumber) {
    // Check number and Return Network
    // take prefix
     // slice off prefix length
-    const stringPrefix = cardNumber.slice(0, 2)
+    let stringPrefix = cardNumber.slice(0, 2)
   // convert to number
-    const prefix = Number(stringPrefix);
+    let prefix = Number(stringPrefix);
     // take length
     // length method
     const ccnLen = cardNumber.length;
@@ -60,8 +60,13 @@ var detectNetwork = function(cardNumber) {
    if ([38, 39].includes(prefix) && ccnLen === 14) return 'Diner\'s Club';
    if ([34, 37].includes(prefix) && ccnLen === 15) return 'American Express';
    if ([51, 52, 53, 54, 55].includes(prefix) && ccnLen === 16) return 'MasterCard';
-   
-     // if not found? return 'no corresponding network found'
+
+   //if not found, set prefix to first digit in cardNumber
+   stringPrefix = cardNumber.slice(0, 1);
+   prefix = Number(stringPrefix);
+   if ([4].includes(prefix) && [13, 16, 19].includes(ccnLen)) return 'Visa';
+
+   // if not found? return 'no corresponding network found'
    return 'no corresponding network found'
 
   // Visa always has a prefix of 4 and a length of 13, 16, or 19.
