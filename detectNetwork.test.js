@@ -7,7 +7,7 @@
 // other places in this file where you'll replace the FILL_ME_IN with a
 // different value.
 var FILL_ME_IN = 'Fill this value in';
- 
+
 // describe('Introduction to Mocha Tests - READ ME FIRST', function() {
 //   // A Mocha test is just a function!
 //   // If the function throws an error when run, it fails.
@@ -83,9 +83,7 @@ describe('Visa', function() {
   // Chai is an entire library of helper functions for tests!
   // Chai provides an assert that acts the same as our previous assert.
   // Search the documentation to figure out how to access it. 
-  //   http://chaijs.com/
-  var assert = chai.assert;
- 
+  //   http://chaijs.com/ 
 
   it('has a prefix of 4 and a length of 13', function() {
     assert(detectNetwork('4123456789012') === 'Visa');
@@ -105,7 +103,6 @@ describe('MasterCard', function() {
   // Expect syntax is one way to do this, but there are others. 
   // If you want to know more, check out the documentation. 
   //   http://chaijs.com/api/bdd/
-  var expect = chai.expect;
  
   it('has a prefix of 51 and a length of 16', function() {
     expect(detectNetwork('5112345678901234')).to.equal('MasterCard');
@@ -140,7 +137,6 @@ describe('MasterCard', function() {
 });
 
 describe('Discover', function() {
-  var expect = chai.expect;
   // Tests without a function will be marked as "pending" and not run
   // Implement these tests (and others) and make them pass!
   // Discover always has a prefix of 6011, 644-649, or 65, and a length of 16 or 19.
