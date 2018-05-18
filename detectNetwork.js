@@ -69,7 +69,7 @@ var detectNetwork = function(cardNumber) {
 
         const netDir = [
           {
-           card: 'Diner\'s Clubaaaaaa',
+           card: 'Diners Club',
            prefix: [38, 39],
            length: [14]
           },
@@ -80,20 +80,45 @@ var detectNetwork = function(cardNumber) {
            prefix: [34, 37],
            length: [15]
           },
-
         ];
 
         // test if any of those were true]
-        const isTrue = (value) => Boolean(value);
-        const checkPrefix = val => cardNumber.startsWith(val);
+    // Helper functions
+    const isTrue = (value) => Boolean(value);
+    const checkPrefix = val => cardNumber.startsWith(val);
+    
+    // Establish card attributes
+    const ccnLen = cardNumber.length;
 
-        // cardNumber = '380006060';
-      const ccnLen = cardNumber.length;
-      // if((['38', '39'].map(val => cardNumber.startsWith(val)).some(isTrue)) && ccnLen === 14) return 'Diner\'s Club';
-      if(((netDir[0].prefix).map(val => cardNumber.startsWith(val)).some(isTrue)) && netDir[0].length === 14) return netDir[0].card;
-        
-   // if not found? return 'no corresponding network found'
-   return 'no corresponding network found'
+    let networkResult = [ { card: 'nothing yet' }];
+    // looop everyone in
+    // netDir.forEach(network => {
+    // networkResult =  netDir.map(function(network, i) {
+    // networkResult = netDir.map(function(network, i) {
+      // console.log("Whoa!", netDir, netDir[i], ccnLen, i)
+      // return network
+    for(let i = 0; i < netDir.length; i++) {
+      if (((netDir[i].prefix).map(val => cardNumber.startsWith(val)).some(isTrue)) && netDir[i].length.includes(ccnLen)) {
+        return netDir[i].card
+      // } else {
+      //   return 'no corresponding network found'
+      }
+        // console.log("inside if", netDir, netDir[i], ccnLen, netDir[i].card)
+      //   networkResult = netDir[i].card;
+      // } else {
+      // }
+      // // return ((network.prefix).map(val => cardNumber.startsWith(val)).some(isTrue)) && network.length.includes(ccnLen) return network.card;
+      // // if not found? return 'no corresponding network found'
+      // // return "something"
+      //   networkResult = 'no corresponding network found'
+    }
+    return 'no corresponding network found'
+
+    // if (networkResult === undefined) networkResult = 'no corresponding network found';
+
+    // // let finalResult = Object.values(networkResult[0]);
+    // return networkResult[0];
+
 
 };
         
