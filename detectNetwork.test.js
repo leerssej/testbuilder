@@ -42,7 +42,7 @@ const assert = chai.assert;
 const should = chai.should;
 
 const range = (start, end) => Array(end - start + 1).fill(start).map((value, i) => value + i);
-console.log(range(624,626));
+// console.log(range(624,626));
 
 describe('Diner\'s Club', function() {
 

@@ -60,49 +60,84 @@ var detectNetwork = function(cardNumber) {
    
       //str.startsWith(searchString[, position])
         //if(cardNumber.startsWith( 38, 0))
+        // console.log(('380000').startsWith('38'))
 
+        // get to work on list of numbers
+        //console.log(['38', '39'].map(val => cardNumber.startsWith(val)));
+
+        const range = (start, end) => Array(end - start + 1).fill(start).map((value, i) => value + i);
+
+        const netDir = [
+          {
+           card: 'Diner\'s Clubaaaaaa',
+           prefix: [38, 39],
+           length: [14]
+          },
+
+          //  if ([34, 37].includes(prefix) && ccnLen === 15) return 'American Express'
+          {
+           card: 'American Express',
+           prefix: [34, 37],
+           length: [15]
+          },
+
+        ];
+
+        // test if any of those were true]
+        const isTrue = (value) => Boolean(value);
+        const checkPrefix = val => cardNumber.startsWith(val);
+
+        // cardNumber = '380006060';
+      const ccnLen = cardNumber.length;
+      // if((['38', '39'].map(val => cardNumber.startsWith(val)).some(isTrue)) && ccnLen === 14) return 'Diner\'s Club';
+      if(((netDir[0].prefix).map(val => cardNumber.startsWith(val)).some(isTrue)) && netDir[0].length === 14) return netDir[0].card;
+        
+   // if not found? return 'no corresponding network found'
+   return 'no corresponding network found'
+
+};
+        
 
           
-   // Check number and Return Network
-   // take prefix
-    // slice off prefix length
+  //  // Check number and Return Network
+  //  // take prefix
+  //   // slice off prefix length
 
-    let stringPrefix = cardNumber.slice(0, 2)
-  // convert to number
-    let prefix = Number(stringPrefix);
-    // take length
-    // length method
-    const ccnLen = cardNumber.length;
-   // determine if prefix && length correspond to network
-   // compare to object with correctly listed attributes
-     // if found ? return network
-   if ([38, 39].includes(prefix) && ccnLen === 14) return 'Diner\'s Club';
-   if ([34, 37].includes(prefix) && ccnLen === 15) return 'American Express';
-   if ([51, 52, 53, 54, 55].includes(prefix) && ccnLen === 16) return 'MasterCard';
-   if ([65].includes(prefix) && [16, 19].includes(ccnLen)) return 'Discover';
+  //   let stringPrefix = cardNumber.slice(0, 2)
+  // // convert to number
+  //   let prefix = Number(stringPrefix);
+  //   // take length
+  //   // length method
+  //  // determine if prefix && length correspond to network
+  //  // compare to object with correctly listed attributes
+  //    // if found ? return network
+  //  if ([38, 39].includes(prefix) && ccnLen === 14) return 'Diner\'s Club';
+  //  if ([34, 37].includes(prefix) && ccnLen === 15) return 'American Express';
+  //  if ([51, 52, 53, 54, 55].includes(prefix) && ccnLen === 16) return 'MasterCard';
+  //  if ([65].includes(prefix) && [16, 19].includes(ccnLen)) return 'Discover';
 
-   //if not found, set prefix to first digit in cardNumber
-   stringPrefix = cardNumber.slice(0, 1);
-   prefix = Number(stringPrefix);
-   if ([4].includes(prefix) && [13, 16, 19].includes(ccnLen)) return 'Visa';
+  //  //if not found, set prefix to first digit in cardNumber
+  //  stringPrefix = cardNumber.slice(0, 1);
+  //  prefix = Number(stringPrefix);
+  //  if ([4].includes(prefix) && [13, 16, 19].includes(ccnLen)) return 'Visa';
 
-   stringPrefix = cardNumber.slice(0, 3);
-   prefix = Number(stringPrefix);
-   if ([644, 645, 646, 647, 648, 649].includes(prefix) && [16, 19].includes(ccnLen)) return 'Discover';
+  //  stringPrefix = cardNumber.slice(0, 3);
+  //  prefix = Number(stringPrefix);
+  //  if ([644, 645, 646, 647, 648, 649].includes(prefix) && [16, 19].includes(ccnLen)) return 'Discover';
 
-   stringPrefix = cardNumber.slice(0, 4);
-   prefix = Number(stringPrefix);
-   if ([6011].includes(prefix) && [16, 19].includes(ccnLen)) return 'Discover';
-   // Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
-   if ([5018, 5020, 5038, 6304].includes(prefix) && [12, 13, 14, 15, 16, 17, 18, 19].includes(ccnLen)) return 'Maestro';
+  //  stringPrefix = cardNumber.slice(0, 4);
+  //  prefix = Number(stringPrefix);
+  //  if ([6011].includes(prefix) && [16, 19].includes(ccnLen)) return 'Discover';
+  //  // Maestro always has a prefix of 5018, 5020, 5038, or 6304, and a length of 12-19.
+  //  if ([5018, 5020, 5038, 6304].includes(prefix) && [12, 13, 14, 15, 16, 17, 18, 19].includes(ccnLen)) return 'Maestro';
 
    // China UnionPay always has a prefix of 622126-622925, 624-626, or 6282-6288 and a length of 16-19.
 
-
    // if not found? return 'no corresponding network found'
-   return 'no corresponding network found'
+   // return 'no corresponding network found'
+
 
   // Visa always has a prefix of 4 and a length of 13, 16, or 19.
   // MasterCard always has a prefix of 51, 52, 53, 54, or 55 and a length of 16.
 
-};
+// };
