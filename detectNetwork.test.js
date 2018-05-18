@@ -42,7 +42,6 @@ const assert = chai.assert;
 const should = chai.should;
 
 const range = (start, end) => Array(end - start + 1).fill(start).map((value, i) => value + i);
-// console.log(range(624,626));
 
 describe('Diner\'s Club', function() {
 
@@ -178,14 +177,22 @@ describe('should support China UnionPay', function() {
     range(16, 19).forEach(ccnLen => {
       let ccn = prefix.toString().padEnd(String(ccnLen), '1234567890');
       it(`has a prefix of ${prefix} and a length of ${ccnLen}: with CCN: ${ccn}`, function() {
-        expect(detectNetwork(ccn)).to.equal('Maestro');
+        expect(detectNetwork(ccn)).to.equal('China UnionPay');
       });
     });
   });
 });
 
-describe('should support Switch')
+describe('should support Switch', function() {
 // Switch always has a prefix of 4903, 4905, 4911, 4936, 564182, 633110, 6333, or 6759 and a length of 16, 18, or 19.
-
+  [4903, 4905, 4911, 4936, 564182, 633110, 6333, 6759].forEach(prefix => {
+    [16, 18, 19].forEach(ccnLen => {
+      let ccn = prefix.toString().padEnd(String(ccnLen), '1234567890');
+      it(`has a prefix of ${prefix} and a length of ${ccnLen}: with CCN: ${ccn}`, function() {
+        expect(detectNetwork(ccn)).to.equal('Switch');
+      });
+    });
+  });
+});
 
 
