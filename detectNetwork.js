@@ -19,17 +19,15 @@ var detectNetwork = function(cardNumber) {
      // take length
       // length method
 
+    // ^^ all of the above steps can be replaced with startsWith()
+
      // determine if prefix && length correspond to network
      // compare to object with correctly listed attributes
         // if found ? return network
         // if not found? return 'no corresponding network found'
 
-  // Helper functions
-  const isTrue = (value) => Boolean(value);
-  const checkPrefix = val => cardNumber.startsWith(val);
-
   for(let i = 0; i < netDir.length; i++) {
-    if (((netDir[i].prefix).map(val => cardNumber.startsWith(val)).some(isTrue)) && netDir[i].length.includes(cardNumber.length)) {
+    if (((netDir[i].prefix).map(val => cardNumber.startsWith(val)).some(Boolean)) && netDir[i].length.includes(cardNumber.length)) {
       return netDir[i].card
     }
   }
