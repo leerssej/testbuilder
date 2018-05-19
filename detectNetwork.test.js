@@ -1,6 +1,6 @@
 const expect = chai.expect;
 
-const range = (start, end) => Array(end - start + 1).fill(start).map((value, i) => value + i);
+const range = (start, end) => Array(end - start + 1).fill().map((v, i) => start + i);
 
 const netDir =  [
   {
