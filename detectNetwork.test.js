@@ -52,15 +52,15 @@ const netDir =  [
   },
 ];
 
-for (let i = 0; i < netDir.length; i++) {
-  describe(netDir[i].card, function() {
-  netDir[i].prefix.forEach((prefix) => {
-      netDir[i].length.forEach((ccnLen) => {
+netDir.forEach(network => {
+  describe(network.card, function() {
+  network.prefix.forEach((prefix) => {
+      network.length.forEach((ccnLen) => {
         let ccn = prefix.toString().padEnd(String(ccnLen), '1234567890');
         it(`has a prefix of ${prefix} and a length of ${ccnLen}: with CCN: ${ccn}`, function() {
-          expect(detectNetwork(ccn)).to.equal(netDir[i].card);
+          expect(detectNetwork(ccn)).to.equal(network.card);
         });
       });
     });
   });
-}
+});
